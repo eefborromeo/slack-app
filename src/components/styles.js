@@ -9,7 +9,7 @@ export const FlexContainer = styled.div`
     color: #D1D2D3;
 `
 
-export const Sidebar = styled.div`
+export const SidebarStyles = styled.div`
     background-color: #19171D;
     height: 100vh;
     flex: 1;
