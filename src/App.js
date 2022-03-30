@@ -1,6 +1,7 @@
 import './App.css';
-import { ChannelDMs, FlexContainer, GroupName, Layout, Messages, Sidebar } from './components/styles';
-import { BsPencilSquare, BsPlus, BsHash } from "react-icons/bs"
+import { ChannelDMs, FlexContainer, GroupName, Layout, Message, MessageBox, MessageContainer, Messages, MessageTitle, Sidebar } from './components/styles';
+import { BsPencilSquare, BsPlus, BsHash } from "react-icons/bs";
+import { BiSend } from "react-icons/bi"
 
 function App() {
   return (
@@ -29,14 +30,27 @@ function App() {
                   </ChannelDMs>
                 </div>
               </Sidebar>
-              <Messages>
-                <div>
-                  Message Title
-                </div>
-                <div>
-                  Messages
-                </div>
-              </Messages>
+              <MessageContainer>
+                <MessageTitle>
+                  <h1>Eloisa</h1>
+                </MessageTitle>
+                <Messages>
+                  <Message>
+                    <h3>This is the start of your messages</h3>
+                  </Message>
+                  <Message>
+                    <span>Thursday, March 31st</span>
+                    <div>
+                      <h5>Name</h5>
+                      <p>Hello</p>
+                    </div>
+                  </Message>
+                </Messages>
+                <MessageBox>
+                  <textarea></textarea>
+                  <button type="submit"><BiSend /></button>
+                </MessageBox>
+              </MessageContainer>
           </FlexContainer>
       </Layout>
     </div>

@@ -71,8 +71,79 @@ export const ChannelDMs = styled.div`
  
 `
 
-export const Messages = styled.div`
+export const MessageContainer = styled.div`
     background-color: #212121;
     height: 100vh;
     flex: 4;
+`
+
+export const MessageTitle = styled.div`
+    height: 10%;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    border: 0.4px solid #d1d2d336;
+    h1 {
+        font-size: 1.2rem;
+    }
+`
+
+export const Messages = styled.div`
+    height: 70%;
+    overflow: auto;
+`
+
+export const Message = styled.div`
+    padding: 2rem;
+    position: relative;
+    border-top: 1px solid #d1d2d336;
+    > span {
+        position: absolute;
+        top: -17%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 1px solid #d1d2d336;
+        padding: 10px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 12px;
+        background-color: #212121;
+    }
+
+    h5 {
+        margin-bottom: 10px;
+    }
+`
+
+export const MessageBox = styled.form`
+    border: 1px solid #d1d2d336;
+    border-radius: 10px;
+    height: 15%;
+    width: 90%;
+    margin: auto;
+    position: relative;
+    padding: 1rem;
+
+    textarea {
+        width: 100%;
+        height: 80%;
+        display: block;
+        background-color: transparent;
+        border: none;
+        resize: none;
+        color: #d1d2d3;
+        font-family: sans-serif;
+        outline: none;
+    }
+
+    button {
+        position: absolute;
+        bottom: 0;
+        right: 10px;
+        border: none;
+        color: #d1d2d3;
+        font-size: 25px;
+        background-color: transparent;
+    }
+
 `
