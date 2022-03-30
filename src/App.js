@@ -1,23 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import { ChannelDMs, FlexContainer, GroupName, Layout, Messages, Sidebar } from './components/styles';
+import { BsPencilSquare, BsPlus, BsHash } from "react-icons/bs"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Layout>
+          <FlexContainer>
+              <Sidebar>
+                <GroupName>
+                  <h1>Avion School</h1>
+                  <BsPencilSquare />
+                </GroupName>
+                <div>
+                  <ChannelDMs>
+                    <h2>Channels</h2>
+                    <ul>
+                        <li><BsHash /> batch17</li>
+                        <li><BsPlus /> Add channels</li>
+                    </ul>
+                  </ChannelDMs>
+                  <ChannelDMs>
+                    <h2>Direct Messages</h2>
+                  </ChannelDMs>
+                </div>
+              </Sidebar>
+              <Messages>
+                <div>
+                  Message Title
+                </div>
+                <div>
+                  Messages
+                </div>
+              </Messages>
+          </FlexContainer>
+      </Layout>
     </div>
   );
 }
