@@ -22,6 +22,10 @@ function App() {
                   </ChannelDMs>
                   <ChannelDMs>
                     <h2>Direct Messages</h2>
+                    <ul>
+                      <li>Eloisa</li>
+                      <li>Slackbot</li>
+                    </ul>
                   </ChannelDMs>
                 </div>
               </Sidebar>
