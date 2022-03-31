@@ -1,16 +1,12 @@
 import './App.css';
-import { FlexContainer, Layout } from './components/styles';
-import Sidebar from './components/sidebar/Sidebar';
-import Messages from './components/messages/Messages';
+import { Layout } from './components/styles';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
     <div className="App">
       <Layout>
-          <FlexContainer>
-              <Sidebar /> 
-              <Messages />
-          </FlexContainer>
+        <Dashboard />
       </Layout>
     </div>
   );
