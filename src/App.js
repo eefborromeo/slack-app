@@ -1,7 +1,7 @@
 import './App.css';
 import { FlexContainer, Layout } from './components/styles';
 import Sidebar from './components/sidebar/Sidebar';
-import Messages from './components/Messages';
+import Messages from './components/messages/Messages';
 
 function App() {
   return (

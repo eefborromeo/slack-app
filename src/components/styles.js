@@ -93,7 +93,7 @@ export const MessagesStyles = styled.div`
     overflow: auto;
 `
 
-export const Message = styled.div`
+export const MessageLayout = styled.div`
     padding: 2rem;
     position: relative;
     border-top: 1px solid #d1d2d336;
