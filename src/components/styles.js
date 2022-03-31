@@ -46,7 +46,7 @@ export const GroupName = styled.div`
 
 `
 
-export const ChannelDMs = styled.div`
+export const ChannelDMsLayout = styled.div`
 
     h2 {
         padding: 2rem 2rem .5rem;
