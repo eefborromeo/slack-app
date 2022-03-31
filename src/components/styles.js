@@ -88,7 +88,7 @@ export const MessageTitle = styled.div`
     }
 `
 
-export const Messages = styled.div`
+export const MessagesStyles = styled.div`
     height: 70%;
     overflow: auto;
 `
