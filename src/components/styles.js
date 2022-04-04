@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const Layout = styled.div`
     height: 100%;
 `
-
 export const FlexContainer = styled.div`
     display: flex;
     color: #D1D2D3;
 `
+
+// DASHBOARD
 
 export const SidebarStyles = styled.div`
     background-color: #19171D;
@@ -146,4 +147,23 @@ export const MessageBox = styled.form`
         background-color: transparent;
     }
 
+`
+
+// LOGIN
+
+export const FormLayout = styled(FlexContainer)`
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    div {
+        border: 1px solid gray;
+        text-align: center;
+        padding: 2rem;
+    }
+    form {
+        input {
+            display: block;
+        }
+    }
 `
