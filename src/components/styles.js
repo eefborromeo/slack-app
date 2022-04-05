@@ -152,18 +152,54 @@ export const MessageBox = styled.form`
 // LOGIN
 
 export const FormLayout = styled(FlexContainer)`
-    height: 100vh;
     justify-content: center;
     align-items: center;
-    color: black;
+    background-color: #f6f6f6;
+    height: 100vh;
+    color: #000;
     div {
-        border: 1px solid gray;
+        background-color: #ffffff;
+    }
+`
+
+export const FormContainer = styled.div`
+    padding: 3rem 8rem;
+    flex-basis: 40%;
+    box-shadow: 0px 1px 10px #e4e4e4;
+    h1 {
         text-align: center;
-        padding: 2rem;
+        padding-bottom: 2rem;
     }
-    form {
-        input {
-            display: block;
-        }
+    p {
+        margin-bottom: 10px;
     }
+    span {
+        font-weight: bold;
+    }
+    input {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 5px;
+        border: 1px solid #D1D2D3;
+        border-radius: 3px;
+    }
+    button {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid rgb(97, 148, 129);
+        background-color: rgb(53, 120, 91);
+        border-radius: 3px;
+        font-weight: bold;
+        color: #fff;
+        font-size: 1rem;
+    }
+    a {
+        display: block;
+        text-align: center;
+        color: rgb(90, 124, 171);
+        text-decoration: none;
+    }
+
 `
