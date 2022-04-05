@@ -7,14 +7,14 @@ export default function Login() {
         <FormLayout>
             <FormContainer>
                 <h1>Sign In to Workspace</h1>
-                <p>Enter your <span>username</span> and <span>password</span></p>
+                <p>Enter your <span>email</span> and <span>password</span></p>
                 <form>
                     <div>
                         <input 
-                            type="text" 
-                            id="username" 
-                            aria-label="Username" 
-                            placeholder="Username" />
+                            type="email" 
+                            id="email" 
+                            aria-label="Email" 
+                            placeholder="Email" />
                     </div>
                     <div>
                         <input 
