@@ -1,3 +1,5 @@
+import React from 'react';
+import { Routes, Route } from "react-router-dom"
 import './App.css';
 import { Layout } from './components/styles';
 import Dashboard from './pages/Dashboard';
@@ -7,8 +9,10 @@ function App() {
   return (
     <div className="App">
       <Layout>
-        <Login />
-        {/* <Dashboard /> */}
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/app" element={<Dashboard />} />
+        </Routes>
       </Layout>
     </div>
   );
