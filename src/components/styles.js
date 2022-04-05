@@ -173,13 +173,13 @@ export const FormContainer = styled.div`
     p {
         margin-bottom: 10px;
     }
-    span {
-        font-weight: bold;
+    div {
+        margin-bottom: 5px;
     }
     input {
         width: 100%;
-        padding: 1rem;
         margin-bottom: 5px;
+        padding: 1rem;
         border: 1px solid #D1D2D3;
         border-radius: 3px;
     }
@@ -201,5 +201,8 @@ export const FormContainer = styled.div`
         color: rgb(90, 124, 171);
         text-decoration: none;
     }
+`
 
+export const Errors = styled.span`
+    color: red;
 `
