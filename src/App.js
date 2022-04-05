@@ -4,6 +4,7 @@ import './App.css';
 import { Layout } from './components/styles';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/app" element={<Dashboard />} />
         </Routes>
       </Layout>
