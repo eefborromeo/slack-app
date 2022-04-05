@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Errors, FormContainer, FormLayout } from "../components/styles";
 
 export default function Signup() {
@@ -12,16 +13,19 @@ export default function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const {email, password, password_confirmation} = userInfo;
-        
-        if (!email && !password && !password_confirmation) {
-            setErrors(true);
-            setErrorMessage('Fields cannot be empty')
-        }
-        if (password !== password_confirmation) {
-            setErrors(true);
-            setErrorMessage('Passwords do not match')
-        }
+
+        axios.post('http://206.189.91.54/api/v1/auth', userInfo) 
+            .then(response => {
+                return response       
+            })
+            .catch(error => {
+                const { data: { status, errors } } = error.response;
+                if (status === "error") {
+                    setErrors(true)
+                    setErrorMessage(errors.full_messages)
+                    return
+                }
+            })
     }
 
     const handleChange = (e) => {
@@ -69,9 +73,9 @@ export default function Signup() {
                             placeholder="Password Confirmation"
                             value={userInfo.password_confirmation}
                             onChange={handleChange} />
-                            { errors &&  <Errors>{errorMessage}</Errors>}
+                            { errors &&  errorMessage.map((message, index) => <Errors key={index}>{message}</Errors>)}
                     </div>
-                    <button type="submit">Sign In</button>
+                    <button type="submit">Sign Up</button>
                 </form>
             </FormContainer>
         </FormLayout>

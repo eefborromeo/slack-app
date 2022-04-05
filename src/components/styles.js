@@ -203,6 +203,6 @@ export const FormContainer = styled.div`
     }
 `
 
-export const Errors = styled.span`
+export const Errors = styled.p`
     color: red;
 `
