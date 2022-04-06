@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Errors, FormContainer, FormLayout } from "../components/styles";
 
@@ -11,11 +12,14 @@ export default function Signup() {
     const [errors, setErrors] = useState(false);
     const [errorMessage, setErrorMessage] = useState('')
 
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         axios.post('http://206.189.91.54/api/v1/auth', userInfo) 
             .then(response => {
+                navigate('/')
                 return response       
             })
             .catch(error => {
