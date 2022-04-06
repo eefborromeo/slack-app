@@ -9,7 +9,7 @@ export const FlexContainer = styled.div`
 `
 
 // DASHBOARD
-
+// SIDEBAR
 export const SidebarStyles = styled.div`
     background-color: #19171D;
     height: 100vh;
@@ -72,6 +72,7 @@ export const ChannelDMsLayout = styled.div`
  
 `
 
+// MESSAGES
 export const MessageContainer = styled.div`
     background-color: #212121;
     height: 100vh;
