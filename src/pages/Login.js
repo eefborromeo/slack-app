@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { FormContainer, FormLayout, Errors } from '../components/styles';
+import { UserContext } from '../contexts/User';
 
 export default function Login() {
     const [userInfo, setUserInfo] = useState({
@@ -10,12 +11,19 @@ export default function Login() {
     })
     const [errors, setErrors] = useState(false);
     const [errorMessage, setErrorMessage] = useState([]);
+    const context = useContext(UserContext);
+
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         axios.post('http://206.189.91.54/api/v1/auth/sign_in', userInfo)
-            .then(response => response)
+            .then(response => {
+                context.handleLogin();
+                navigate('/app');
+                console.log(response)
+            })
             .catch(error => {
                 const { data: { errors } } = error.response;
                 setErrors(true)
@@ -33,6 +41,10 @@ export default function Login() {
             ...userInfo,
             [key]: value
         })
+    }
+
+    if (context.user.isLoggedIn) {
+        return <Navigate to="/app" />
     }
 
     return (
