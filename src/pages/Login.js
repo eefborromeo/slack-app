@@ -20,9 +20,9 @@ export default function Login() {
 
         axios.post('http://206.189.91.54/api/v1/auth/sign_in', userInfo)
             .then(response => {
-                context.handleLogin();
+                const { data: { data: { email } } } = response;
+                context.handleLogin(email);
                 navigate('/app');
-                console.log(response)
             })
             .catch(error => {
                 const { data: { errors } } = error.response;
