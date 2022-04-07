@@ -4,6 +4,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 import Messages from "../components/messages/Messages";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../contexts/User";
+import TopBar from "../components/topbar/TopBar";
 
 export default function Dashboard() {
    const { user } = useContext(UserContext);
@@ -11,9 +12,12 @@ export default function Dashboard() {
        return <Navigate to="/" />
    }
     return (
-        <FlexContainer>
-            <Sidebar /> 
-            <Messages />
-        </FlexContainer>
+        <>
+            <TopBar />
+            <FlexContainer>
+                <Sidebar /> 
+                <Messages />
+            </FlexContainer>
+        </>
     )
 }
