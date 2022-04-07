@@ -36,6 +36,7 @@ export default function UserList({ allUsers, setTitle, setIsNewMessage }) {
     return (
         <UserListForm>
             <Dropdown>
+                <label>To:</label>
                 <input 
                     type="text" 
                     value={search}
@@ -44,7 +45,7 @@ export default function UserList({ allUsers, setTitle, setIsNewMessage }) {
                 />
                 {   searchDisplay && 
                     <Options>
-                        { searchList.map(user => <div key={user.id} onClick={() => handleClick(user)}>{user.uid}</div>)}
+                        {!searchList ? <div>Loading</div> : searchList.map(user => <div key={user.id} onClick={() => handleClick(user)}>{user.uid}</div>)}
                     </Options>
                 }
             </Dropdown>

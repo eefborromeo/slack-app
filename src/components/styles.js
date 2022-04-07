@@ -169,18 +169,21 @@ export const MessageBoxLayout = styled.form`
 
 export const UserListForm = styled.form`
     border-top: 0.4px solid #d1d2d336;
+    height: 100%;
+    padding: 1rem;
 `
 
 export const Dropdown = styled.div`
-    height: 50%;
+    height: 100%;
     position: relative;
+    display: flex;
+    align-items: flex-end;
     input {
         width: 100%;
         background: transparent;
-        height: 100px;
         outline: none;
         border: none;
-        padding: 0 2rem;
+        padding: 0 1rem;
         color: #d1d2d3;
     }
 `
@@ -189,7 +192,7 @@ export const Options = styled.div`
     position: absolute;
     width: 90%;
     left: 5%;
-    top: 95%;
+    top: 150%;
     transform: translateY(-5%);
     color: #d1d2d3;
     background-color: #212121;
