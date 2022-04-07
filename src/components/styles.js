@@ -9,10 +9,25 @@ export const FlexContainer = styled.div`
 `
 
 // DASHBOARD
+// TOPBAR
+export const TopBarLayout = styled.div`
+    height: 7vh;
+    background-color: #19171D;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 1rem;
+`
+export const Avatar = styled.div`
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+`
+
 // SIDEBAR
 export const SidebarStyles = styled.div`
     background-color: #19171D;
-    height: 100vh;
+    height: 93vh;
     flex: 1;
     h2 {
         font-size: 1rem;
@@ -75,7 +90,7 @@ export const ChannelDMsLayout = styled.div`
 // MESSAGES
 export const MessageContainer = styled.div`
     background-color: #212121;
-    height: 100vh;
+    height: 93vh;
     flex: 4;
 `
 

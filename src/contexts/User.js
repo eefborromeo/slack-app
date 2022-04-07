@@ -15,6 +15,14 @@ function UserContextProvider({children}) {
             isLoggedIn: true
         })
     }
+
+    const handleLogout = () => {
+        setUser({
+            ...user,
+            currentUser: '',
+            isLoggedIn: false
+        })
+    }
     
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('user'))
@@ -27,7 +35,7 @@ function UserContextProvider({children}) {
 
 
     return (
-        <UserContext.Provider value={{ user, handleLogin }}>
+        <UserContext.Provider value={{ user, handleLogin, handleLogout }}>
             {children}
         </UserContext.Provider>
     )
