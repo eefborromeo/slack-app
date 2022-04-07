@@ -3,14 +3,13 @@ import { createContext, useEffect, useState } from "react";
 const UserContext = createContext();
 
 function UserContextProvider({children}) {
-    const [user, setUser] = useState({
-        currentUser: '',
-        isLoggedIn: false
-    })
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
     
-    const handleLogin = (userEmail) => {
+    const handleLogin = (uid, accessToken, client, userEmail) => {
         setUser({
-            ...user,
+            uid, 
+            accessToken,
+            client,
             currentUser: userEmail,
             isLoggedIn: true
         })
@@ -18,7 +17,9 @@ function UserContextProvider({children}) {
 
     const handleLogout = () => {
         setUser({
-            ...user,
+            uid: '', 
+            accessToken: '',
+            client: '',
             currentUser: '',
             isLoggedIn: false
         })
