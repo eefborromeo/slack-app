@@ -1,10 +1,14 @@
 import React from "react";
-import { MessageTitle } from "../styles";
+import { MessageTitle, TitleContainer } from "../styles";
+import UserList from "./UserList";
 
-export default function Title() {
+export default function Title({ children }) {
     return (
         <MessageTitle>
-            <h1>Eloisa</h1>
+            <TitleContainer>
+                <h2>Title</h2>
+            </TitleContainer>
+            <UserList />
         </MessageTitle>
-    )
+)
 }
