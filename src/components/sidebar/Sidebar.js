@@ -5,12 +5,17 @@ import { BsPencilSquare } from "react-icons/bs";
 import Channels from "./Channels";
 import DMs from "./DMs";
 
-export default function Sidebar() {
+export default function Sidebar({ setIsNewMessage }) {
+
+    const handleNewMessage = () => {
+        setIsNewMessage(true);
+    }
+
     return (
         <SidebarStyles>
             <GroupName>
                 <h1>Avion School</h1>
-                <BsPencilSquare />
+                <BsPencilSquare onClick={handleNewMessage} />
             </GroupName>
             <div>
                 <Channels />

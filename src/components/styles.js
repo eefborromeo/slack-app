@@ -96,13 +96,14 @@ export const MessageContainer = styled.div`
 
 export const MessageTitle = styled.div`
     height: 10%;
-    display: flex;
+`
+
+export const TitleContainer = styled.div`
+    border-top: 0.4px solid #d1d2d336;
+    height: 100%;
+    display: flex; 
     align-items: center;
-    padding: 2rem;
-    border: 0.4px solid #d1d2d336;
-    h1 {
-        font-size: 1.2rem;
-    }
+    padding: 0 2rem;
 `
 
 export const MessagesStyles = styled.div`
@@ -132,7 +133,7 @@ export const MessageLayout = styled.div`
     }
 `
 
-export const MessageBox = styled.form`
+export const MessageBoxLayout = styled.form`
     border: 1px solid #d1d2d336;
     border-radius: 10px;
     height: 15%;
@@ -163,6 +164,45 @@ export const MessageBox = styled.form`
         background-color: transparent;
     }
 
+`
+// USER LIST
+
+export const UserListForm = styled.form`
+    border-top: 0.4px solid #d1d2d336;
+`
+
+export const Dropdown = styled.div`
+    height: 50%;
+    position: relative;
+    input {
+        width: 100%;
+        background: transparent;
+        height: 100px;
+        outline: none;
+        border: none;
+        padding: 0 2rem;
+        color: #d1d2d3;
+    }
+`
+
+export const Options = styled.div`
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    top: 95%;
+    transform: translateY(-5%);
+    color: #d1d2d3;
+    background-color: #212121;
+    z-index: 1;
+    border: 0.4px solid #d1d2d336;
+    height: 300px;
+    overflow: auto;
+    div {
+        padding: 0.5rem 1rem;
+        :hover {
+            background-color: #1062f4;
+        }
+    }
 `
 
 // LOGIN

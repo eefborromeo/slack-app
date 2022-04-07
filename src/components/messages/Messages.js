@@ -5,10 +5,10 @@ import SentMessages from "./SentMessages";
 import MessageBox from "./MessageBox";
 
 
-export default function Messages() {
+export default function Messages({ allUsers, isNewMessage, setIsNewMessage }) {
     return (
         <MessageContainer>
-            <Title />
+            <Title allUsers={allUsers} isNewMessage={isNewMessage} setIsNewMessage={setIsNewMessage} />
             <SentMessages />
             <MessageBox />
         </MessageContainer>

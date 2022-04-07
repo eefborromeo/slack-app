@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { MessageTitle, TitleContainer } from "../styles";
 import UserList from "./UserList";
 
-export default function Title({ children }) {
+export default function Title({ allUsers, isNewMessage, setIsNewMessage }) {
+    const [title, setTitle] = useState('');
+
     return (
         <MessageTitle>
-            <TitleContainer>
-                <h2>Title</h2>
-            </TitleContainer>
-            <UserList />
+            {isNewMessage ? 
+                <UserList allUsers={allUsers} setTitle={setTitle} setIsNewMessage={setIsNewMessage} /> :
+                <TitleContainer>
+                    <h2>{ title }</h2>
+                </TitleContainer>
+            }
         </MessageTitle>
-)
-}
+)}
