@@ -68,23 +68,47 @@ export const ChannelDMsLayout = styled.div`
         padding: 2rem 2rem .5rem;
     }
 
+    a {
+        color: #D1D2D3;
+        text-decoration: none;
+    }
+    
     li {
-        display: flex;
-        align-items: center;
         padding: 5px 2rem;
         &:hover {
             background-color: #d1d2d336;
         }
     }
+`
 
-    li:last-child svg {
+export const DMsListItem = styled.li`
+    position: relative;
+    svg {
+        display: none;
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 2rem;
+        position: absolute;
+        right: 10%;
+    }
+
+    :hover {
+        svg {
+            display: inline;
+        }
+    }
+`
+
+export const Plus = styled.li`
+    display: flex;
+    align-items: center;
+    svg {
         color: #D1D2D3;
         background-color: #212121;
         padding: 5px;
         font-size: 20px;
         margin-right: 10px;
     }
- 
 `
 
 // MESSAGES
@@ -168,13 +192,15 @@ export const MessageBoxLayout = styled.form`
 // USER LIST
 
 export const UserListForm = styled.form`
-    border-top: 0.4px solid #d1d2d336;
+    border: 0.4px solid #d1d2d336;
     height: 100%;
+    max-height: 76px;
     padding: 1rem;
 `
 
 export const Dropdown = styled.div`
     height: 100%;
+    max-height: 50px;
     position: relative;
     display: flex;
     align-items: flex-end;
