@@ -11,18 +11,38 @@ function UserContextProvider({children}) {
             accessToken,
             client,
             currentUser: userEmail,
-            isLoggedIn: true
+            isLoggedIn: true,
+            receivers: []
         })
     }
 
     const handleLogout = () => {
         setUser({
-            uid: '', 
-            accessToken: '',
-            client: '',
-            currentUser: '',
+            ...user,
             isLoggedIn: false
         })
+    }
+
+    const handleSettingReceivers = (id, email) => {
+        const updatedReceivers = user.receivers
+        if (!updatedReceivers.includes(id)) {
+            updatedReceivers.push({
+                id,
+                email
+            })
+        }
+        setUser({
+            ...user,
+            receivers: updatedReceivers
+        })
+    }
+
+    const handleUpdateReceivers = (newReceivers) => {
+        setUser({
+            ...user,
+            receivers: newReceivers
+        })
+
     }
     
     useEffect(() => {
@@ -36,7 +56,7 @@ function UserContextProvider({children}) {
 
 
     return (
-        <UserContext.Provider value={{ user, handleLogin, handleLogout }}>
+        <UserContext.Provider value={{ user, handleLogin, handleLogout, handleSettingReceivers, handleUpdateReceivers }}>
             {children}
         </UserContext.Provider>
     )
