@@ -1,6 +1,6 @@
 import React from "react";
 import { BsPlus, BsHash } from "react-icons/bs"
-import { ChannelDMsLayout } from "../styles";
+import { ChannelDMsLayout, Plus } from "../styles";
 
 export default function Channels() {
     return (
@@ -8,7 +8,7 @@ export default function Channels() {
             <h2>Channels</h2>
             <ul>
                 <li><BsHash /> batch17</li>
-                <li><BsPlus /> Add channels</li>
+                <Plus><BsPlus className="plus" /> Add channels</Plus>
             </ul>
         </ChannelDMsLayout>
     )
