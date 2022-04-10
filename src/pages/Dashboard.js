@@ -7,7 +7,6 @@ import { FlexContainer, MessageContainer, MessagesStyles, MessageLayout } from "
 import Sidebar from "../components/sidebar/Sidebar";
 import Messages from "../components/messages/Messages";
 import TopBar from "../components/topbar/TopBar";
-import { ReceiverContextProvider } from "../contexts/Receiver";
 import Title from "../components/messages/Title";
 
 
