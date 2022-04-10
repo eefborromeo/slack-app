@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { MessageTitle, TitleContainer } from "../styles";
 import UserList from "./UserList";
 
 export default function Title({ allUsers, isNewMessage, setIsNewMessage }) {
-    const [title, setTitle] = useState('');
 
     return (
         <MessageTitle>
             {isNewMessage ? 
-                <UserList allUsers={allUsers} setTitle={setTitle} setIsNewMessage={setIsNewMessage} /> :
+                <UserList 
+                    allUsers={allUsers} 
+                    setIsNewMessage={setIsNewMessage}
+                    /> :
                 <TitleContainer>
-                    <h2>{ title }</h2>
+                    <h2>{ "Create or Select a Channel or Direct Message"}</h2>
                 </TitleContainer>
             }
         </MessageTitle>
