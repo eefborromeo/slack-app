@@ -8,17 +8,18 @@ import Signup from './pages/Signup';
 import { UserContextProvider } from './contexts/User';
 
 function App() {
+
   return (
     <UserContextProvider>
-      <div className="App">
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="app" element={<Dashboard />} />
-          </Routes>
-        </Layout>
-      </div>
+        <div className="App">
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
+              <Route path="app/*" element={<Dashboard />} />
+            </Routes>
+          </Layout>
+        </div>
     </UserContextProvider>
   );
 }
