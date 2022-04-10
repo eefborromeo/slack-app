@@ -3,10 +3,10 @@ import { UserContext } from "../../contexts/User";
 import { TopBarLayout } from "../styles";
 
 export default function TopBar() {
-    const context = useContext(UserContext);
+    const {handleLogout} = useContext(UserContext);
 
     const handleClick = () => {
-        context.handleLogout();
+        handleLogout();
     }
     return (
         <TopBarLayout>
