@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { FormContainer, FormLayout, Errors } from '../components/styles';
@@ -11,7 +11,7 @@ export default function Login() {
     })
     const [errors, setErrors] = useState(false);
     const [errorMessage, setErrorMessage] = useState([]);
-    const context = useContext(UserContext);
+    const user = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export default function Login() {
         axios.post('http://206.189.91.54/api/v1/auth/sign_in', userInfo)
             .then(response => {
                 const { data: { data: { email, uid }}, headers: { "access-token": accessToken, client  } } = response;
-                context.handleLogin(uid, accessToken, client, email);
+                user.handleLogin(uid, accessToken, client, email);
                 navigate('/app');
             })
             .catch(error => {
@@ -30,7 +30,6 @@ export default function Login() {
                 setErrorMessage(errors)
                 return
             })
-
     }
 
     const handleChange = (e) => {
@@ -43,7 +42,7 @@ export default function Login() {
         })
     }
 
-    if (context.user.isLoggedIn) {
+    if (user.isLoggedIn) {
         return <Navigate to="/app" />
     }
 
