@@ -1,28 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ReceiverContext } from "../../contexts/Receiver";
+import { UserContext } from "../../contexts/User";
 import { Dropdown, Options, UserListForm } from "../styles";
 
-export default function UserList({ allUsers, setTitle, setIsNewMessage }) {
+export default function UserList({ allUsers, setIsNewMessage }) {
     const [search, setSearch] = useState('');
     const [searchList, setSearchList] = useState(allUsers);
-    const [searchDisplay, setSearchDisplay] = useState(false);
-    const receiver = useContext(ReceiverContext);
+    const { handleSettingReceivers } = useContext(UserContext);
+    const navigate = useNavigate();
     
     const handleSearch = (e) => {
         setSearch(e.target.value);
-        searchList.length === 0 ? setSearchDisplay(false) : setSearchDisplay(true);
     }
     
     const formSubmit = (id, email) => {
-        receiver.handleSetReceiver(id)
-        setTitle(email)
+        handleSettingReceivers(id, email);
         setIsNewMessage(false);
+        navigate(`/app/${id}`);
     }
 
     const handleClick = ({id, email}) => {
         formSubmit(id, email)
     }
-
 
     useEffect(() => {
         if (search === "") {
@@ -43,10 +43,10 @@ export default function UserList({ allUsers, setTitle, setIsNewMessage }) {
                     onChange={handleSearch}
                     autoComplete="off"
                 />
-                {   searchDisplay && 
+                { 
                     <Options>
-                        {!searchList ? <div>Loading</div> : searchList.map(user => <div key={user.id} onClick={() => handleClick(user)}>{user.uid}</div>)}
-                    </Options>
+                        {searchList.length === 0 ? <div><h3>Loading...</h3></div> : searchList.map(user => <div key={user.id} onClick={() => handleClick(user)}>{user.uid}</div>)}
+                    </Options> 
                 }
             </Dropdown>
         </UserListForm>
