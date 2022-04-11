@@ -3,17 +3,20 @@ import { createContext, useEffect, useState } from "react";
 const UserContext = createContext();
 
 function UserContextProvider({children}) {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+    const [user, setUser] = useState({
+        isLoggedIn: false,
+        receivers: []
+    })
     
     const handleLogin = (uid, accessToken, client, userEmail, expiry) => {
         setUser({
+            ...user,
             uid, 
             accessToken,
             client,
             currentUser: userEmail,
             expiry,
             isLoggedIn: true,
-            receivers: []
         })
     }
 
