@@ -10,11 +10,13 @@ import { useParams } from "react-router-dom";
 export default function Messages({ allUsers, isNewMessage, setIsNewMessage }) {
     const { user: { receivers} } = useContext(UserContext);
     const [selectedUser, setSelectedUser] = useState('');
+    const [sentMessage, setSentMessage] = useState({});
     const { id } = useParams();
 
     useEffect(() => {
         setSelectedUser(receivers.filter(receiver => receiver.id === parseInt(id)))
     }, [receivers, id])
+
 
     return (
         <MessageContainer>
@@ -23,8 +25,8 @@ export default function Messages({ allUsers, isNewMessage, setIsNewMessage }) {
                 isNewMessage={isNewMessage} 
                 setIsNewMessage={setIsNewMessage} 
                 selectedUser={selectedUser} />
-            <SentMessages selectedUser={selectedUser} />
-            <MessageBox />
+            <SentMessages selectedUser={selectedUser} sentMessage={sentMessage} />
+            <MessageBox selectedUser={selectedUser} setSentMessage={setSentMessage} />
         </MessageContainer>
     )
 }

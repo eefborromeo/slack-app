@@ -4,7 +4,7 @@ import { UserContext } from "../../contexts/User";
 import { MessagesStyles, MessageLayout } from "../styles";
 import Message from "./Message";
 
-export default function SentMessages({ selectedUser }) {
+export default function SentMessages({ selectedUser, sentMessage }) {
     const [messagesData, setMessagesData] = useState([]);
     const { user: { expiry, uid, accessToken, client } } = useContext(UserContext);
     const params = {
@@ -23,7 +23,7 @@ export default function SentMessages({ selectedUser }) {
 
     useEffect(() => {
         getMessages()
-    }, [selectedUser])
+    }, [selectedUser, sentMessage])
     
     return (
         <MessagesStyles>
@@ -31,7 +31,7 @@ export default function SentMessages({ selectedUser }) {
             <h3>This is the start of your messages</h3>
             </MessageLayout>
             {
-                messagesData.map(message => <Message message={message} />)
+                messagesData.map(message => <Message key={message.id} message={message} />)
             }
         </MessagesStyles>
     )

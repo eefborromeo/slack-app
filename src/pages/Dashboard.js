@@ -1,5 +1,5 @@
 import React, { useState, useContext} from "react";
-import { Navigate, Route, Routes, useParams } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { UserContext } from "../contexts/User";
 
 import { FlexContainer, MessageContainer } from "../components/styles";

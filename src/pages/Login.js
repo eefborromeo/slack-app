@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { FormContainer, FormLayout, Errors } from '../components/styles';
@@ -20,8 +20,8 @@ export default function Login() {
 
         axios.post('http://206.189.91.54/api/v1/auth/sign_in', userInfo)
             .then(response => {
-                const { data: { data: { email, uid }}, headers: { "access-token": accessToken, client  } } = response;
-                user.handleLogin(uid, accessToken, client, email);
+                const { data: { data: { email, uid }}, headers: { "access-token": accessToken, client, expiry  } } = response;
+                user.handleLogin(uid, accessToken, client, email, expiry);
                 navigate('/app');
             })
             .catch(error => {

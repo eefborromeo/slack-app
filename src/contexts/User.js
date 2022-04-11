@@ -5,12 +5,13 @@ const UserContext = createContext();
 function UserContextProvider({children}) {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
     
-    const handleLogin = (uid, accessToken, client, userEmail) => {
+    const handleLogin = (uid, accessToken, client, userEmail, expiry) => {
         setUser({
             uid, 
             accessToken,
             client,
             currentUser: userEmail,
+            expiry,
             isLoggedIn: true,
             receivers: []
         })
