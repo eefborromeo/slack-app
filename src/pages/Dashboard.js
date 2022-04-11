@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect} from "react";
+import React, { useState, useContext} from "react";
 import { Navigate, Route, Routes, useParams } from "react-router-dom";
-import axios from "axios";
 import { UserContext } from "../contexts/User";
 
-import { FlexContainer, MessageContainer, MessagesStyles, MessageLayout } from "../components/styles";
+import { FlexContainer, MessageContainer } from "../components/styles";
 import Sidebar from "../components/sidebar/Sidebar";
 import Messages from "../components/messages/Messages";
 import TopBar from "../components/topbar/TopBar";
@@ -11,7 +10,7 @@ import Title from "../components/messages/Title";
 
 
 export default function Dashboard() {
-    const { user: { isLoggedIn, receivers} } = useContext(UserContext);
+    const { user: { isLoggedIn } } = useContext(UserContext);
     const [allUsers, setAllUsers] = useState([]);
     const [isNewMessage, setIsNewMessage] = useState(false);
  

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { MessageTitle, TitleContainer } from "../styles";
 import UserList from "./UserList";
 
-export default function Title({ allUsers, isNewMessage, setIsNewMessage }) {
-
+export default function Title({ allUsers, isNewMessage, setIsNewMessage, selectedUser }) {
+    
     return (
         <MessageTitle>
             {isNewMessage ? 
@@ -12,7 +12,7 @@ export default function Title({ allUsers, isNewMessage, setIsNewMessage }) {
                     setIsNewMessage={setIsNewMessage}
                     /> :
                 <TitleContainer>
-                    <h2>{ "Create or Select a Channel or Direct Message"}</h2>
+                    <h2>{ selectedUser ? selectedUser[0].email : "Create or Select a Channel or Direct Message" }</h2>
                 </TitleContainer>
             }
         </MessageTitle>

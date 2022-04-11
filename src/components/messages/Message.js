@@ -1,13 +1,20 @@
 import React from "react";
 import { MessageLayout } from "../styles";
 
-export default function Message() {
+export default function Message({ message }) {
+    const options = {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric'
+    }
+    const date = new Date(message.created_at).toLocaleDateString('en-US', options);
+
     return (
         <MessageLayout>
-            <span>Thursday, March 31st</span>
+            <span>{date}</span>
             <div>
-                <h5>Name</h5>
-                <p>Hello</p>
+                <h5>{message.sender.uid}</h5>
+                <p>{message.body}</p>
             </div>
         </MessageLayout>
     )

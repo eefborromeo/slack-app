@@ -15,6 +15,8 @@ export default function DMs() {
         handleUpdateReceivers(removeReceiver)
         if (receivers.length === 1) {
             navigate('/app')
+        } else {
+            navigate(`${removeReceiver[removeReceiver.length-1].id}`);
         }
     }
 
