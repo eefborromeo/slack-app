@@ -11,7 +11,7 @@ export default function Login() {
     })
     const [errors, setErrors] = useState(false);
     const [errorMessage, setErrorMessage] = useState([]);
-    const user = useContext(UserContext);
+    const {user} = useContext(UserContext);
 
     const navigate = useNavigate();
 
