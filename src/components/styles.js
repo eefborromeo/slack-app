@@ -8,6 +8,31 @@ export const FlexContainer = styled.div`
     color: #D1D2D3;
 `
 
+export const ModalStyles = styled.div`
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(29 29 29 / 50%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    > div {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #292929;
+        width: 60%;
+        height: 60vh;
+        border-radius: 10px;
+    }
+    &.display-block {
+        display: block;
+    }
+    &.display-none {
+        display: none;
+    }
+`
+
 // DASHBOARD
 // TOPBAR
 export const TopBarLayout = styled.div`
@@ -290,4 +315,30 @@ export const FormContainer = styled.div`
 
 export const Errors = styled.p`
     color: red;
+`
+
+// New Channel
+export const NewChannelLayout = styled.div`
+    width: 95%;
+    margin: auto;
+    padding: 2rem;
+    > div {
+        display: block;
+        div {
+            margin-bottom: 10px;
+        }
+    }
+    label {
+        width: 20%;
+    }
+    input {
+        width: 80%;
+        display: inline-block;
+    }
+    .members {
+        position: static;
+        transform: none;
+        width: 100%;
+        margin-top: 1rem;
+    }
 `

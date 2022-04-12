@@ -7,7 +7,7 @@ import { BsPencilSquare } from "react-icons/bs";
 import Channels from "./Channels";
 import DMs from "./DMs";
 
-export default function Sidebar({ setIsNewMessage, setAllUsers, selectedUser }) {
+export default function Sidebar({ setIsNewMessage, setAllUsers, setIsModalShow }) {
     const { user: { expiry, uid, accessToken, client } } = useContext(UserContext);
     const params = {
         "expiry": expiry,
@@ -19,11 +19,15 @@ export default function Sidebar({ setIsNewMessage, setAllUsers, selectedUser }) 
     const getAllUsers = async () => {
         let {data: {data}} = await axios.get("http://206.189.91.54/api/v1/users", { params })
         setAllUsers(data)
-    } 
+    }
+
+    const handleUserFetch = () => {
+        getAllUsers()
+    }
     
     const handleNewMessage = () => {
         setIsNewMessage(prevState => !prevState);
-        getAllUsers()
+        handleUserFetch();
     }
 
     return (
@@ -33,7 +37,7 @@ export default function Sidebar({ setIsNewMessage, setAllUsers, selectedUser }) 
                 <BsPencilSquare onClick={handleNewMessage} />
             </GroupName>
             <div>
-                <Channels />
+                <Channels setIsModalShow={setIsModalShow} handleUserFetch={handleUserFetch}/>
                 <DMs />
             </div>
         </SidebarStyles>
