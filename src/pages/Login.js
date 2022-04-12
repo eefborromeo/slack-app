@@ -11,7 +11,7 @@ export default function Login() {
     })
     const [errors, setErrors] = useState(false);
     const [errorMessage, setErrorMessage] = useState([]);
-    const {user} = useContext(UserContext);
+    const {user, handleLogin} = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export default function Login() {
         axios.post('http://206.189.91.54/api/v1/auth/sign_in', userInfo)
             .then(response => {
                 const { data: { data: { email, uid }}, headers: { "access-token": accessToken, client, expiry  } } = response;
-                user.handleLogin(uid, accessToken, client, email, expiry);
+                handleLogin(uid, accessToken, client, email, expiry);
                 navigate('/app');
             })
             .catch(error => {
