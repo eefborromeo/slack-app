@@ -151,6 +151,7 @@ export const TitleContainer = styled.div`
     border-top: 0.4px solid #d1d2d336;
     height: 100%;
     display: flex; 
+    justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
 `

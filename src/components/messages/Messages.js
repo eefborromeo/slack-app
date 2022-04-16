@@ -7,7 +7,7 @@ import { UserContext } from "../../contexts/User";
 import { useParams } from "react-router-dom";
 
 
-export default function Messages({ allUsers, isNewMessage, setIsNewMessage, channels}) {
+export default function Messages({ allUsers, isNewMessage, setIsNewMessage, channels, setIsModalShow, setIsChannelInfo}) {
     const { user: { receivers} } = useContext(UserContext);
     const [selectedUser, setSelectedUser] = useState('');
     const [selectedChannel, setSelectedChannel] = useState({});
@@ -26,7 +26,9 @@ export default function Messages({ allUsers, isNewMessage, setIsNewMessage, chan
                 isNewMessage={isNewMessage} 
                 setIsNewMessage={setIsNewMessage} 
                 selectedUser={selectedUser}
-                selectedChannel={selectedChannel} />
+                selectedChannel={selectedChannel}
+                setIsModalShow={setIsModalShow}
+                setIsChannelInfo={setIsChannelInfo} />
             <SentMessages selectedUser={selectedUser} sentMessage={sentMessage} selectedChannel={selectedChannel}/>
             <MessageBox selectedUser={selectedUser} setSentMessage={setSentMessage} selectedChannel={selectedChannel}/>
         </MessageContainer>

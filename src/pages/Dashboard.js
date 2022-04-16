@@ -17,6 +17,7 @@ export default function Dashboard() {
     const [channels, setChannels] = useState([]);
     const [isNewMessage, setIsNewMessage] = useState(false);
     const [isModalShow, setIsModalShow] = useState(false);
+    const [isChannelInfo, setIsChannelInfo] = useState(false);
  
     if (!isLoggedIn) {
         return <Navigate to="/" />
@@ -40,6 +41,8 @@ export default function Dashboard() {
                                 isNewMessage={isNewMessage} 
                                 setIsNewMessage={setIsNewMessage}
                                 channels={channels}
+                                setIsModalShow={setIsModalShow}
+                                setIsChannelInfo={setIsChannelInfo}
                                 />
                         } />
                         <Route path="/" element={
@@ -52,8 +55,12 @@ export default function Dashboard() {
                             </MessageContainer>
                         } />
                     </Routes>
-                    <Modal isModalShow={isModalShow} setIsModalShow={setIsModalShow}>
-                        <NewChannel allUsers={allUsers} />
+                    <Modal isModalShow={isModalShow} setIsModalShow={setIsModalShow} setIsChannelInfo={setIsChannelInfo}>
+                       { 
+                           isChannelInfo ? 
+                            <div>Channel Info</div> :
+                            <NewChannel allUsers={allUsers} />
+                       }
                     </Modal>
             </FlexContainer>
         </>
