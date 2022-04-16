@@ -4,7 +4,7 @@ import { UserContext } from "../../contexts/User";
 import { Dropdown, Errors, NewChannelLayout, Options } from "../styles"
 import { IoIosClose } from "react-icons/io"
 
-export default function NewChannel({ allUsers, setIsModalShow }) {
+export default function NewChannel({ allUsers }) {
     const [channelName, setChannelName] = useState('');
     const [filter, setFilter] = useState('');
     const [filterList, setFilterList] = useState(allUsers)

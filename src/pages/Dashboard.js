@@ -49,7 +49,7 @@ export default function Dashboard() {
                         } />
                     </Routes>
                     <Modal isModalShow={isModalShow} setIsModalShow={setIsModalShow}>
-                        <NewChannel allUsers={allUsers} setIsModalShow={setIsModalShow}/>
+                        <NewChannel allUsers={allUsers} />
                     </Modal>
             </FlexContainer>
         </>
