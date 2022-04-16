@@ -37,7 +37,7 @@ export default function Sidebar({ setIsNewMessage, setAllUsers, setIsModalShow }
                 <BsPencilSquare onClick={handleNewMessage} />
             </GroupName>
             <div>
-                <Channels setIsModalShow={setIsModalShow} handleUserFetch={handleUserFetch}/>
+                <Channels setIsModalShow={setIsModalShow} handleUserFetch={handleUserFetch} params={params}/>
                 <DMs />
             </div>
         </SidebarStyles>
