@@ -4,7 +4,7 @@ import { UserContext } from "../../contexts/User";
 import { MessagesStyles, MessageLayout } from "../styles";
 import Message from "./Message";
 
-export default function SentMessages({ selectedUser, sentMessage }) {
+export default function SentMessages({ selectedUser, sentMessage, selectedChannel }) {
     const [messagesData, setMessagesData] = useState([]);
     const { user: { expiry, uid, accessToken, client } } = useContext(UserContext);
     const params = {
@@ -14,25 +14,31 @@ export default function SentMessages({ selectedUser, sentMessage }) {
         "client": client,
     }
 
-    const getMessages = async () => {
-        if (selectedUser) {
-            let {data: {data}} = await axios.get(`http://206.189.91.54/api/v1/messages?receiver_id=${selectedUser[0].id}&receiver_class=User`, { params })
-            setMessagesData(data);
-        }
+    const getDirectMessages = async () => {
+        let {data: {data}} = await axios.get(`http://206.189.91.54/api/v1/messages?receiver_id=${selectedUser.id}&receiver_class=User`, { params })
+        setMessagesData(data);
+    }
+    
+    const getChannelMessages = async () => {
+        let {data: {data}} = await axios.get(`http://206.189.91.54/api/v1/messages?receiver_id=${selectedChannel.id}&receiver_class=Channel`, { params })
+        setMessagesData(data)
     }
 
+
     useEffect(() => {
-        getMessages()
-    }, [selectedUser, sentMessage])
+        if (selectedUser) {
+            getDirectMessages();
+        } else {
+            getChannelMessages();
+        }
+    }, [selectedUser, selectedChannel, sentMessage])
     
     return (
         <MessagesStyles>
             <MessageLayout>
             <h3>This is the start of your messages</h3>
             </MessageLayout>
-            {
-                messagesData.map(message => <Message key={message.id} message={message} />)
-            }
+            {messagesData && messagesData.map(messages => <Message key={messages.id} message={messages} />)}
         </MessagesStyles>
     )
 }

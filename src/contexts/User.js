@@ -23,6 +23,12 @@ function UserContextProvider({children}) {
     const handleLogout = () => {
         setUser({
             ...user,
+            uid: '',
+            accessToken: '',
+            client: '',
+            currentUser: '',
+            expiry: '',
+            receivers: [],
             isLoggedIn: false
         })
     }

@@ -27,8 +27,8 @@ export default function Messages({ allUsers, isNewMessage, setIsNewMessage, chan
                 setIsNewMessage={setIsNewMessage} 
                 selectedUser={selectedUser}
                 selectedChannel={selectedChannel} />
-            {/* <SentMessages selectedUser={selectedUser} sentMessage={sentMessage} /> */}
-            {/* <MessageBox selectedUser={selectedUser} setSentMessage={setSentMessage} /> */}
+            <SentMessages selectedUser={selectedUser} sentMessage={sentMessage} selectedChannel={selectedChannel}/>
+            <MessageBox selectedUser={selectedUser} setSentMessage={setSentMessage} selectedChannel={selectedChannel}/>
         </MessageContainer>
     )
 }

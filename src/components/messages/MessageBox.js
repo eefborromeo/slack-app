@@ -1,25 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../../contexts/User";
 
 import { BiSend } from "react-icons/bi"
 import { MessageBoxLayout } from "../styles";
 
-export default function MessageBox({selectedUser, setSentMessage}) {
+export default function MessageBox({selectedUser, setSentMessage, selectedChannel}) {
     const [messageBody , setMessageBody] = useState('')
+    const [body, setBody] = useState({});
     const { user: { expiry, uid, accessToken, client } } = useContext(UserContext);
-    if (!selectedUser) return;
+
     const headers = {
         "expiry": expiry,
         "uid": uid,
         "access-token": accessToken,
         "client": client,
-    }
-    
-    const body = {
-        "receiver_id": selectedUser[0].id,
-        "receiver_class": "User",
-        "body": messageBody,
     }
 
     const handleSubmit = (e) => {
@@ -36,6 +31,22 @@ export default function MessageBox({selectedUser, setSentMessage}) {
     const handleChange = (e) => {
         setMessageBody(e.target.value)
     }
+
+    useEffect(() => {
+        if (selectedUser) {
+            setBody({
+                "receiver_id": selectedUser.id,
+                "receiver_class": "User",
+                "body": messageBody,
+            })
+        } else {
+            setBody({
+                "receiver_id": selectedChannel.id,
+                "receiver_class": "Channel",
+                "body": messageBody,
+            })
+        }
+    }, [selectedUser, selectedChannel, messageBody])
  
     return (
         <MessageBoxLayout onSubmit={(e) => handleSubmit(e)}>
