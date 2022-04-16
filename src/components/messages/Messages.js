@@ -7,16 +7,17 @@ import { UserContext } from "../../contexts/User";
 import { useParams } from "react-router-dom";
 
 
-export default function Messages({ allUsers, isNewMessage, setIsNewMessage }) {
+export default function Messages({ allUsers, isNewMessage, setIsNewMessage, channels}) {
     const { user: { receivers} } = useContext(UserContext);
     const [selectedUser, setSelectedUser] = useState('');
+    const [selectedChannel, setSelectedChannel] = useState({});
     const [sentMessage, setSentMessage] = useState({});
     const { id } = useParams();
 
     useEffect(() => {
-        setSelectedUser(receivers.filter(receiver => receiver.id === parseInt(id)))
-    }, [receivers, id])
-
+        setSelectedUser(receivers.find(receiver => receiver.id === parseInt(id)))
+        setSelectedChannel(channels.find(channel => channel.id === parseInt(id)))
+    }, [receivers, channels, id])
 
     return (
         <MessageContainer>
@@ -24,9 +25,10 @@ export default function Messages({ allUsers, isNewMessage, setIsNewMessage }) {
                 allUsers={allUsers} 
                 isNewMessage={isNewMessage} 
                 setIsNewMessage={setIsNewMessage} 
-                selectedUser={selectedUser} />
-            <SentMessages selectedUser={selectedUser} sentMessage={sentMessage} />
-            <MessageBox selectedUser={selectedUser} setSentMessage={setSentMessage} />
+                selectedUser={selectedUser}
+                selectedChannel={selectedChannel} />
+            {/* <SentMessages selectedUser={selectedUser} sentMessage={sentMessage} /> */}
+            {/* <MessageBox selectedUser={selectedUser} setSentMessage={setSentMessage} /> */}
         </MessageContainer>
     )
 }

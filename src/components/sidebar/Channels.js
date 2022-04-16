@@ -5,9 +5,7 @@ import axios from "axios";
 import { BsPlus, BsHash } from "react-icons/bs"
 import { ChannelDMsLayout, Plus } from "../styles";
 
-export default function Channels({setIsModalShow, handleUserFetch, params}) {
-    const [channels, setChannels] = useState([]);
-
+export default function Channels({setIsModalShow, handleUserFetch, params, channels, setChannels}) {
     const handleNewChannel = () => {
         setIsModalShow(true)
         handleUserFetch()
@@ -29,7 +27,7 @@ export default function Channels({setIsModalShow, handleUserFetch, params}) {
             <ul>
                 {channels.map(channel => {
                     return (
-                        <Link key={channel.id} to={`/app/channels/${channel.id}`}>
+                        <Link key={channel.id} to={`/app/${channel.id}`}>
                             <li><BsHash /> {channel.name}</li>
                         </Link>
                     )

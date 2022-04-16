@@ -7,7 +7,7 @@ import { BsPencilSquare } from "react-icons/bs";
 import Channels from "./Channels";
 import DMs from "./DMs";
 
-export default function Sidebar({ setIsNewMessage, setAllUsers, setIsModalShow }) {
+export default function Sidebar({ setIsNewMessage, setAllUsers, setIsModalShow, channels, setChannels }) {
     const { user: { expiry, uid, accessToken, client } } = useContext(UserContext);
     const params = {
         "expiry": expiry,
@@ -37,7 +37,13 @@ export default function Sidebar({ setIsNewMessage, setAllUsers, setIsModalShow }
                 <BsPencilSquare onClick={handleNewMessage} />
             </GroupName>
             <div>
-                <Channels setIsModalShow={setIsModalShow} handleUserFetch={handleUserFetch} params={params}/>
+                <Channels 
+                    setIsModalShow={setIsModalShow} 
+                    handleUserFetch={handleUserFetch} 
+                    params={params}
+                    channels={channels}
+                    setChannels={setChannels}
+                />
                 <DMs />
             </div>
         </SidebarStyles>

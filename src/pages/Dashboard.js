@@ -14,6 +14,7 @@ import NewChannel from "../components/modal/NewChannel";
 export default function Dashboard() {
     const { user: { isLoggedIn } } = useContext(UserContext);
     const [allUsers, setAllUsers] = useState([]);
+    const [channels, setChannels] = useState([]);
     const [isNewMessage, setIsNewMessage] = useState(false);
     const [isModalShow, setIsModalShow] = useState(false);
  
@@ -29,13 +30,16 @@ export default function Dashboard() {
                         setIsNewMessage={setIsNewMessage} 
                         setAllUsers={setAllUsers}
                         setIsModalShow={setIsModalShow}
+                        channels={channels}
+                        setChannels={setChannels}
                     />
                     <Routes>
-                        <Route path=":id" element={
+                        <Route path="/:id" element={
                             <Messages 
                                 allUsers={allUsers}
                                 isNewMessage={isNewMessage} 
-                                setIsNewMessage={setIsNewMessage} 
+                                setIsNewMessage={setIsNewMessage}
+                                channels={channels}
                                 />
                         } />
                         <Route path="/" element={
