@@ -7,20 +7,7 @@ import { BsPencilSquare } from "react-icons/bs";
 import Channels from "./Channels";
 import DMs from "./DMs";
 
-export default function Sidebar({ setIsNewMessage, setAllUsers, setIsModalShow, channels, setChannels }) {
-    const { user: { expiry, uid, accessToken, client } } = useContext(UserContext);
-    const params = {
-        "expiry": expiry,
-        "uid": uid,
-        "access-token": accessToken,
-        "client": client,
-    }
- 
-    const getAllUsers = async () => {
-        let {data: {data}} = await axios.get("http://206.189.91.54/api/v1/users", { params })
-        setAllUsers(data)
-    }
-
+export default function Sidebar({ setIsNewMessage, getAllUsers, setIsModalShow, channels, setChannels, params }) {
     const handleUserFetch = () => {
         getAllUsers()
     }
