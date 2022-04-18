@@ -106,6 +106,8 @@ export const ChannelDMsLayout = styled.div`
     
     li {
         padding: 5px 2rem;
+        display: flex;
+        align-items: center;
         &:hover {
             background-color: #d1d2d336;
         }
@@ -254,7 +256,6 @@ export const Dropdown = styled.div`
         border: none;
         padding: 0 1rem;
         color: #d1d2d3;
-        padding: 10px;
     }
 `
 
@@ -351,8 +352,18 @@ export const NewChannelLayout = styled.div`
         width: 20%;
     }
     input {
-        width: 80%;
         display: inline-block;
+        width: auto;
+        max-width: 100%;
+    }
+    span {
+        margin-left: 10px;
+        display: inline-flex;
+        align-items: flex-end;
+        > svg {
+            margin-left: 5px;
+            font-size: 16px
+        }
     }
     .members {
         position: static;

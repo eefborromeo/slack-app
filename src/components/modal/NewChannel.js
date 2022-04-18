@@ -98,7 +98,7 @@ export default function NewChannel({ allUsers }) {
                         </div>
                         <div>
                             <label>Members:</label>
-                            {memberDisplay.map(({id, uid}) => <span key={id}>{uid} <IoIosClose onClick={() => handleDelete(id)}/>, </span>)}
+                            {memberDisplay.map(({id, uid}) => <span key={id}><span>{uid}</span> <IoIosClose onClick={() => handleDelete(id)}/>, </span>)}
                             <input type="text" value={filter} onChange={(e) => handleFilter(e)}/>
                         </div>
                         <Options className="members">
