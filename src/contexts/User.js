@@ -28,7 +28,6 @@ function UserContextProvider({children}) {
             client: '',
             currentUser: '',
             expiry: '',
-            receivers: [],
             isLoggedIn: false
         })
     }
