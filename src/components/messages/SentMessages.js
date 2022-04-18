@@ -38,7 +38,7 @@ export default function SentMessages({ selectedUser, sentMessage, selectedChanne
             <MessageLayout>
             <h3>This is the start of your messages</h3>
             </MessageLayout>
-            {messagesData && messagesData.map(messages => <Message key={messages.id} message={messages} />)}
+            {messagesData?.map(messages => <Message key={messages.id} message={messages} />)}
         </MessagesStyles>
     )
 }
