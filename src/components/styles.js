@@ -192,6 +192,12 @@ export const MessageLayout = styled.div`
     h5 {
         margin-bottom: 10px;
     }
+    > div {
+        display: flex;
+        > img {
+            margin-right: 15px;
+        }
+    }
 `
 
 export const MessageBoxLayout = styled.form`
