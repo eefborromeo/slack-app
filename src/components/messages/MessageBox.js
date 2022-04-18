@@ -33,13 +33,13 @@ export default function MessageBox({selectedUser, setSentMessage, selectedChanne
     }
 
     useEffect(() => {
-        if (selectedUser) {
+        if (selectedUser?.id) {
             setBody({
                 "receiver_id": selectedUser.id,
                 "receiver_class": "User",
                 "body": messageBody,
             })
-        } else {
+        } else if (selectedChannel?.id) {
             setBody({
                 "receiver_id": selectedChannel.id,
                 "receiver_class": "Channel",

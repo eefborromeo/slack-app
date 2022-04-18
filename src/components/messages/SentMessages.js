@@ -15,12 +15,12 @@ export default function SentMessages({ selectedUser, sentMessage, selectedChanne
     }
 
     const getDirectMessages = async () => {
-        let {data: {data}} = await axios.get(`http://206.189.91.54/api/v1/messages?receiver_id=${selectedUser.id}&receiver_class=User`, { params })
+        let {data: {data}} = await axios.get(`http://206.189.91.54/api/v1/messages?receiver_id=${selectedUser?.id}&receiver_class=User`, { params })
         setMessagesData(data);
     }
     
     const getChannelMessages = async () => {
-        let {data: {data}} = await axios.get(`http://206.189.91.54/api/v1/messages?receiver_id=${selectedChannel.id}&receiver_class=Channel`, { params })
+        let {data: {data}} = await axios.get(`http://206.189.91.54/api/v1/messages?receiver_id=${selectedChannel?.id}&receiver_class=Channel`, { params })
         setMessagesData(data)
     }
 
