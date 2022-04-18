@@ -42,6 +42,12 @@ export const TopBarLayout = styled.div`
     flex-direction: row-reverse;
     align-items: center;
     padding: 1rem;
+    color: #d1d2d3;
+    svg {
+        &:hover {
+            cursor: pointer;
+        }
+    }
 `
 export const Avatar = styled.div`
     width: 20px;
@@ -154,6 +160,11 @@ export const TitleContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
+    svg {
+        &:hover {
+            cursor: pointer;
+        }
+    }
 `
 
 export const MessagesStyles = styled.div`
@@ -237,6 +248,7 @@ export const Dropdown = styled.div`
         border: none;
         padding: 0 1rem;
         color: #d1d2d3;
+        padding: 10px;
     }
 `
 
@@ -342,6 +354,20 @@ export const NewChannelLayout = styled.div`
         width: 100%;
         margin-top: 1rem;
     }
+    button {
+        padding: 5px 7px;
+        border: 0.5px solid #d1d2d3;
+        border-radius: 3px;
+        outline: none;
+        display: block;
+        margin-left: auto;
+        background: none;
+        color: #d1d2d3;
+        &:hover {
+            background: #d1d2d3;
+            color: rgb(29 29 29 / 100%)
+        }
+    }
 `
 
 // Channel Information
@@ -397,6 +423,12 @@ export const Tab = styled.div`
 
     h3, p, li {
         margin-bottom: 10px;
+    }
+
+    button {
+        border: none;
+        color: #d1d2d3;
+        background: none;
     }
 
     input {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MessageTitle, TitleContainer } from "../styles";
 import UserList from "./UserList";
+import {GoKebabHorizontal} from "react-icons/go"
 
 export default function Title({ allUsers, isNewMessage, setIsNewMessage, selectedUser, selectedChannel, setIsModalShow, setIsChannelInfo }) {
     const handleChannelInfo = () => {
@@ -17,7 +18,7 @@ export default function Title({ allUsers, isNewMessage, setIsNewMessage, selecte
                     /> :
                 <TitleContainer>
                     <h2>{ selectedUser ? selectedUser.email : selectedChannel ? selectedChannel.name : "Create or Select a Channel or Direct Message"}</h2>
-                    {selectedChannel && <button onClick={handleChannelInfo}>Get Channel Info</button>}
+                    {selectedChannel && <GoKebabHorizontal onClick={handleChannelInfo}/>}
                 </TitleContainer>
             }
         </MessageTitle>

@@ -90,7 +90,7 @@ export default function ChannelInfo({ selectedChannel, getAllUsers, allUsers }) 
                 <h3>About This Channel</h3>
                 <p>Owner: <span>{ownerInfo?.uid || "Loading..."}</span></p>
                 <p>Date Created: <span>{date !== "Invalid Date" && date}</span></p>
-                { !isAddNewMember && <button onClick={handleNewMembers}>Add Members</button>}
+                { !isAddNewMember && <button onClick={handleNewMembers}>+ Add Members</button>}
                 {
                     isAddNewMember &&
                     <Dropdown>
