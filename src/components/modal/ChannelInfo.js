@@ -46,20 +46,26 @@ export default function ChannelInfo({ selectedChannel, getAllUsers, allUsers }) 
     }
 
     const handleNewMembers = () => {
-        setIsAddNewMember(prev => !prev)
+        setIsAddNewMember(true)
     }
 
     const handleSearch = (e) => {
         setSearch(e.target.value)
     }
 
-    const handleAddMember = () => {
-        console.log(channelInfo)
+    const handleAddMember = (userID) => {
+       const body = {
+           "id": channelInfo.id,
+           "member_id": userID
+       }
+       axios.post('http://206.189.91.54/api/v1/channel/add_member', body, { params })
+       setSearch('')
+       setIsAddNewMember(false);
     }
     
     useEffect(() => {
         getChannelInfo();
-    }, [channelInfo])
+    }, [activeTab])
 
     useEffect(() => {
         getMembersById();
@@ -82,16 +88,16 @@ export default function ChannelInfo({ selectedChannel, getAllUsers, allUsers }) 
             </Tabs>
             <Tab className={activeTab === "About" ? "active" : ""}>
                 <h3>About This Channel</h3>
-                <p>Owner: <span>{ownerInfo?.uid}</span></p>
-                <p>Date Created: <span>{date}</span></p>
-                <button onClick={handleNewMembers}>Add Members</button>
+                <p>Owner: <span>{ownerInfo?.uid || "Loading..."}</span></p>
+                <p>Date Created: <span>{date !== "Invalid Date" && date}</span></p>
+                { !isAddNewMember && <button onClick={handleNewMembers}>Add Members</button>}
                 {
                     isAddNewMember &&
                     <Dropdown>
-                        <input onChange={(e) => handleSearch(e)} />
+                        <input value={search} onChange={(e) => handleSearch(e)} />
                         { search && 
                             <Options>
-                                {searchList?.map(user => <div key={user.id} onClick={handleAddMember}>{user.uid}</div>)}
+                                {searchList?.map(user => <div key={user.id} onClick={() => handleAddMember(user.id)}>{user.uid}</div>)}
                             </Options>
                         }
                     </Dropdown>
