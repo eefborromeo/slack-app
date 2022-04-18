@@ -26,12 +26,16 @@ export default function SentMessages({ selectedUser, sentMessage, selectedChanne
 
 
     useEffect(() => {
-        if (selectedUser) {
-            getDirectMessages();
-        } else {
-            getChannelMessages();
-        }
-    }, [selectedUser, selectedChannel, sentMessage])
+        const interval = setInterval(() => {
+            if (selectedUser) {
+                getDirectMessages();
+            } else {
+                getChannelMessages();
+            }
+          }, 500);
+
+          return () => clearInterval(interval);
+        }, [selectedUser, selectedChannel, sentMessage])
     
     return (
         <MessagesStyles>
