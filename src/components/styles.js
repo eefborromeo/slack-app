@@ -250,7 +250,7 @@ export const Options = styled.div`
     background-color: #212121;
     z-index: 1;
     border: 0.4px solid #d1d2d336;
-    height: 300px;
+    height: 200px;
     overflow: auto;
     div {
         padding: 0.5rem 1rem;
@@ -397,5 +397,16 @@ export const Tab = styled.div`
 
     h3, p, li {
         margin-bottom: 10px;
+    }
+
+    input {
+        display: block;
+        max-width: 100%;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        border-bottom: 0.5px solid #d1d2d3;
+        margin-top: 10px;
+        color: #d1d2d3;
     }
 `

@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../../contexts/User";
-import { ChannelInformation, Tab, Tabs } from "../styles";
+import { ChannelInformation, Dropdown, Options, Tab, Tabs } from "../styles";
 
 export default function ChannelInfo({ selectedChannel, getAllUsers, allUsers }) {
     const [channelInfo, setChannelInfo] = useState({})
     const [channelMembers, setChannelMembers] = useState([]);
     const [activeTab, setActiveTab] = useState("About");
+    const [isAddNewMember, setIsAddNewMember] = useState(false);
+    const [search, setSearch] = useState('');
+    const [searchList, setSearchList] = useState(allUsers);
     const { id } = selectedChannel;
     const { user: { expiry, uid, accessToken, client } } = useContext(UserContext);
     const params = {
@@ -15,6 +18,14 @@ export default function ChannelInfo({ selectedChannel, getAllUsers, allUsers }) 
         "access-token": accessToken,
         "client": client,
     }
+    const ownerInfo = allUsers?.find(user => channelInfo?.owner_id === user.id);
+
+    const options = {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric'
+    }
+    const date = new Date(channelInfo?.created_at).toLocaleDateString('en-US', options);
 
 
     const getChannelInfo = async () => {
@@ -29,26 +40,38 @@ export default function ChannelInfo({ selectedChannel, getAllUsers, allUsers }) 
         setChannelMembers(groupedMembers)
     }
 
-    const ownerInfo = allUsers?.find(user => channelInfo?.owner_id === user.id);
-
-    const options = {
-        weekday: 'long',
-        month: 'long',
-        day: 'numeric'
-    }
-    const date = new Date(channelInfo?.created_at).toLocaleDateString('en-US', options);
 
     const handleChangeTab = (e) => {
         setActiveTab(e.target.textContent)
     }
+
+    const handleNewMembers = () => {
+        setIsAddNewMember(prev => !prev)
+    }
+
+    const handleSearch = (e) => {
+        setSearch(e.target.value)
+    }
+
+    const handleAddMember = () => {
+        console.log(channelInfo)
+    }
     
     useEffect(() => {
         getChannelInfo();
-    }, [])
+    }, [channelInfo])
 
     useEffect(() => {
         getMembersById();
-    }, [allUsers])
+
+        if (search === "") {
+            setSearchList(allUsers);
+        } else {
+            setSearchList(
+                allUsers.filter((user) => user.uid.toLowerCase().match(search.toLowerCase()))
+            )
+        }
+    }, [allUsers, search])
     
     return (
         <ChannelInformation>
@@ -61,7 +84,18 @@ export default function ChannelInfo({ selectedChannel, getAllUsers, allUsers }) 
                 <h3>About This Channel</h3>
                 <p>Owner: <span>{ownerInfo?.uid}</span></p>
                 <p>Date Created: <span>{date}</span></p>
-
+                <button onClick={handleNewMembers}>Add Members</button>
+                {
+                    isAddNewMember &&
+                    <Dropdown>
+                        <input onChange={(e) => handleSearch(e)} />
+                        { search && 
+                            <Options>
+                                {searchList?.map(user => <div key={user.id} onClick={handleAddMember}>{user.uid}</div>)}
+                            </Options>
+                        }
+                    </Dropdown>
+                }
             </Tab>
             <Tab className={activeTab === "Members" ? "active" : ""}>
                 <h3>Channel Members</h3>
