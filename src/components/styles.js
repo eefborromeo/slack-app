@@ -343,3 +343,59 @@ export const NewChannelLayout = styled.div`
         margin-top: 1rem;
     }
 `
+
+// Channel Information
+export const ChannelInformation = styled.div`
+    padding: 2rem;
+    ul {
+        list-style-type: none;
+    }
+`
+
+export const Tabs = styled.ul`
+    display: flex;
+    margin: 10px 0 20px;
+    position: relative;
+    padding-bottom: 10px;
+    &:after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 0.5px;
+        background-color: #D1D2D3;
+        position: absolute;
+        left: 0;
+        bottom: 5px;
+
+    }
+    li {
+        margin-right: 20px;
+        position: relative;
+        &:hover {
+            cursor: pointer;
+        }
+        &.active {
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                background-color: green;
+                z-index: 2;
+                bottom: -6px;
+            }
+        }
+    }
+`
+
+export const Tab = styled.div`
+    display: none;
+    &.active {
+        display: block;
+    }
+
+    h3, p, li {
+        margin-bottom: 10px;
+    }
+`
