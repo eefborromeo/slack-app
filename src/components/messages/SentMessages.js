@@ -6,6 +6,7 @@ import Message from "./Message";
 
 export default function SentMessages({ selectedUser, sentMessage, selectedChannel }) {
     const [messagesData, setMessagesData] = useState([]);
+    const [filteredMessages, setFilteredMessages] = useState([])
     const { user: { expiry, uid, accessToken, client } } = useContext(UserContext);
     const params = {
         "expiry": expiry,
@@ -24,25 +25,52 @@ export default function SentMessages({ selectedUser, sentMessage, selectedChanne
         setMessagesData(data)
     }
 
+    const options = {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric'
+    }
+
+    const messages = messagesData?.reduce((filteredMessages, message, index, array) => {
+        const date = (message) =>  new Date(message).toLocaleDateString('en-US', options);
+        if (!filteredMessages[date(message?.created_at)]) { 
+            filteredMessages[date(message?.created_at)] = [message];
+        } else {
+            filteredMessages[date(message?.created_at)].push(message)
+        }
+        return filteredMessages
+    }, {})
+    
+    let newMessages;
+        if (messages !== undefined || null) {
+             newMessages = Object.keys(messages).map(date => {
+               return {
+                   date,
+                   messages: messages[date]
+               }
+           })
+       }
+    
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        // const interval = setInterval(() => {
             if (selectedUser) {
                 getDirectMessages();
             } else {
                 getChannelMessages();
             }
-          }, 500);
+        //   }, 500);
 
-          return () => clearInterval(interval);
+        //   return () => clearInterval(interval);
         }, [selectedUser, selectedChannel, sentMessage])
+
     
     return (
         <MessagesStyles>
             <MessageLayout>
             <h3>This is the start of your messages</h3>
             </MessageLayout>
-            {messagesData?.map(messages => <Message key={messages.id} message={messages} />)}
+            {newMessages?.length > 0 && newMessages.map(message => <Message key={message.date} message={message} />)}
         </MessagesStyles>
     )
 }

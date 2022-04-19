@@ -180,7 +180,7 @@ export const MessageLayout = styled.div`
     border-top: 1px solid #d1d2d336;
     > span {
         position: absolute;
-        top: -17%;
+        top: -1rem;
         left: 50%;
         transform: translateX(-50%);
         border: 1px solid #d1d2d336;
@@ -196,6 +196,7 @@ export const MessageLayout = styled.div`
     }
     > div {
         display: flex;
+        margin-bottom: 15px;
         > img {
             margin-right: 15px;
         }
