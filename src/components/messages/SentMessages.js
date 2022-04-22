@@ -9,31 +9,15 @@ export default function SentMessages({ selectedUser, sentMessage, selectedChanne
 	const {
 		user: { expiry, uid, accessToken, client },
 	} = useContext(UserContext);
-	const params = {
-		expiry: expiry,
-		uid: uid,
-		'access-token': accessToken,
-		client: client,
-	};
 
-	const getDirectMessages = async () => {
+	const getMessages = async (id, receiver, params) => {
 		let {
 			data: { data },
 		} = await axios.get(
-			`http://206.189.91.54/api/v1/messages?receiver_id=${selectedUser?.id}&receiver_class=User`,
+			`http://206.189.91.54/api/v1/messages?receiver_id=${id}&receiver_class=${receiver}`,
 			{ params }
 		);
-		setMessagesData(data);
-	};
-
-	const getChannelMessages = async () => {
-		let {
-			data: { data },
-		} = await axios.get(
-			`http://206.189.91.54/api/v1/messages?receiver_id=${selectedChannel?.id}&receiver_class=Channel`,
-			{ params }
-		);
-		setMessagesData(data);
+		setMessagesData(data)
 	};
 
 	const options = {
@@ -63,16 +47,23 @@ export default function SentMessages({ selectedUser, sentMessage, selectedChanne
 	}
 
 	useEffect(() => {
+		const params = {
+			expiry: expiry,
+			uid: uid,
+			'access-token': accessToken,
+			client: client,
+		};
+
 		const interval = setInterval(() => {
 			if (selectedUser) {
-				getDirectMessages();
+				getMessages(selectedUser.id, 'User', params);
 			} else {
-				getChannelMessages();
+				getMessages(selectedChannel?.id, 'Channel', params);
 			}
 		}, 1000);
 
 		return () => clearInterval(interval);
-	}, [selectedUser, selectedChannel, sentMessage]);
+	}, [selectedUser, selectedChannel, sentMessage, expiry, uid, accessToken, client]);
 
 	return (
 		<MessagesStyles>
