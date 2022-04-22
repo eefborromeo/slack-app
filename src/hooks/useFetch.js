@@ -5,30 +5,31 @@ import { UserContext } from '../contexts/User';
 export default function useFetch(url) {
 	const [status, setStatus] = useState('idle');
 	const [data, setData] = useState([]);
+	const [error, setError] = useState([]);
 	const {
 		user: { expiry, uid, accessToken, client },
 	} = useContext(UserContext);
-	const params = {
-		expiry: expiry,
-		uid: uid,
-		'access-token': accessToken,
-		client: client,
-	};
-
+	
 	useEffect(() => {
+		const params = {
+			expiry: expiry,
+			uid: uid,
+			'access-token': accessToken,
+			client: client,
+		};
 		if (!url) return;
 
 		const fetchData = async () => {
 			setStatus('fetching');
 			let {
 				data: { data },
-			} = await axios.get(url, { params });
+			} = await axios.get(url, { params }).catch(err => setError(err));
 			setData(data);
 			setStatus('fetched');
 		};
 
 		fetchData();
-	}, [url]);
+	}, [url, expiry, uid, accessToken, client]);
 
-	return { status, data };
+	return { status, data, error };
 }
