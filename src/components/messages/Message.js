@@ -9,7 +9,7 @@ export default function Message({ message }) {
 			<span>{date}</span>
 			{messages.map(mess => {
 				return (
-					<div>
+					<div key={mess.id}>
 						<img
 							src={`https://avatars.dicebear.com/api/initials/${mess.sender.uid.charAt(
 								0
