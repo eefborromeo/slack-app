@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 export default function usePost(url, info, headers = '') {
 	const [res, setRes] = useState({});
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState([]);
 	const handleSubmit = e => {
 		e.preventDefault();
 		axios
