@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import { UserContext } from '../../contexts/User';
 
 import { BiSend } from 'react-icons/bi';
 import { MessageBoxLayout } from '../styles';
+import usePost from '../../hooks/usePost';
 
-export default function MessageBox({ selectedUser, setSentMessage, selectedChannel }) {
+export default function MessageBox({ selectedUser, selectedChannel }) {
 	const [messageBody, setMessageBody] = useState('');
 	const [body, setBody] = useState({});
 	const {
@@ -18,18 +18,8 @@ export default function MessageBox({ selectedUser, setSentMessage, selectedChann
 		'access-token': accessToken,
 		client: client,
 	};
-
-	const handleSubmit = e => {
-		e.preventDefault();
-		axios
-			.post('http://206.189.91.54/api/v1/messages', body, { headers })
-			.then(response => {
-				const { data } = response.data;
-				setSentMessage(data);
-				setMessageBody('');
-			})
-			.catch(error => console.log(error));
-	};
+	
+	const { res, handleSubmit} = usePost('http://206.189.91.54/api/v1/messages', body, headers)
 
 	const handleChange = e => {
 		setMessageBody(e.target.value);
@@ -51,12 +41,20 @@ export default function MessageBox({ selectedUser, setSentMessage, selectedChann
 		}
 	}, [selectedUser, selectedChannel, messageBody]);
 
+	useEffect(() => {
+		if (res) {
+			setMessageBody('')
+		}
+	}, [res])
+
 	return (
-		<MessageBoxLayout onSubmit={e => handleSubmit(e)}>
-			<textarea value={messageBody} onChange={handleChange}></textarea>
-			<button type="submit">
-				<BiSend />
-			</button>
-		</MessageBoxLayout>
+		<>
+			<MessageBoxLayout onSubmit={e => handleSubmit(e)}>
+				<textarea value={messageBody} onChange={handleChange}></textarea>
+				<button type="submit">
+					<BiSend />
+				</button>
+			</MessageBoxLayout>
+		</>
 	);
 }

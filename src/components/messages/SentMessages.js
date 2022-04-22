@@ -4,7 +4,7 @@ import { UserContext } from '../../contexts/User';
 import { MessagesStyles, MessageLayout } from '../styles';
 import Message from './Message';
 
-export default function SentMessages({ selectedUser, sentMessage, selectedChannel }) {
+export default function SentMessages({ selectedUser, selectedChannel }) {
 	const [messagesData, setMessagesData] = useState([]);
 	const {
 		user: { expiry, uid, accessToken, client },
@@ -63,7 +63,7 @@ export default function SentMessages({ selectedUser, sentMessage, selectedChanne
 		}, 1000);
 
 		return () => clearInterval(interval);
-	}, [selectedUser, selectedChannel, sentMessage, expiry, uid, accessToken, client]);
+	}, [selectedUser, selectedChannel, expiry, uid, accessToken, client]);
 
 	return (
 		<MessagesStyles>

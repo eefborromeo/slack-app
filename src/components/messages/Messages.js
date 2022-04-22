@@ -19,7 +19,6 @@ export default function Messages({
 		user: { receivers },
 	} = useContext(UserContext);
 	const [selectedUser, setSelectedUser] = useState('');
-	const [sentMessage, setSentMessage] = useState({});
 	const { status, data } = useFetch('http://206.189.91.54/api/v1/channels');
 	const { id } = useParams();
 
@@ -44,12 +43,10 @@ export default function Messages({
 					/>
 					<SentMessages
 						selectedUser={selectedUser}
-						sentMessage={sentMessage}
 						selectedChannel={selectedChannel}
 					/>
 					<MessageBox
 						selectedUser={selectedUser}
-						setSentMessage={setSentMessage}
 						selectedChannel={selectedChannel}
 					/>
 				</>
