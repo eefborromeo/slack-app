@@ -13,19 +13,12 @@ import ChannelInfo from '../components/modal/ChannelInfo';
 
 export default function Dashboard() {
 	const {
-		user: { expiry, uid, accessToken, client, isLoggedIn },
+		user: { isLoggedIn },
 	} = useContext(UserContext);
-	const [channels, setChannels] = useState([]);
 	const [selectedChannel, setSelectedChannel] = useState({});
 	const [isNewMessage, setIsNewMessage] = useState(false);
 	const [isModalShow, setIsModalShow] = useState(false);
 	const [isChannelInfo, setIsChannelInfo] = useState(false);
-	const params = {
-		expiry: expiry,
-		uid: uid,
-		'access-token': accessToken,
-		client: client,
-	};
 
 	if (!isLoggedIn) {
 		return <Navigate to="/" />;
@@ -35,13 +28,7 @@ export default function Dashboard() {
 		<>
 			<TopBar />
 			<FlexContainer>
-				<Sidebar
-					setIsNewMessage={setIsNewMessage}
-					setIsModalShow={setIsModalShow}
-					channels={channels}
-					setChannels={setChannels}
-					params={params}
-				/>
+				<Sidebar setIsNewMessage={setIsNewMessage} setIsModalShow={setIsModalShow} />
 				<Routes>
 					<Route
 						path="/:id"
@@ -49,7 +36,6 @@ export default function Dashboard() {
 							<Messages
 								isNewMessage={isNewMessage}
 								setIsNewMessage={setIsNewMessage}
-								channels={channels}
 								setIsModalShow={setIsModalShow}
 								setIsChannelInfo={setIsChannelInfo}
 								selectedChannel={selectedChannel}

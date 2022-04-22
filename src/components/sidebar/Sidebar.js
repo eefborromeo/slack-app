@@ -5,13 +5,7 @@ import { BsPencilSquare } from 'react-icons/bs';
 import Channels from './Channels';
 import DMs from './DMs';
 
-export default function Sidebar({
-	setIsNewMessage,
-	setIsModalShow,
-	channels,
-	setChannels,
-	params,
-}) {
+export default function Sidebar({ setIsNewMessage, setIsModalShow }) {
 	const handleNewMessage = () => {
 		setIsNewMessage(prevState => !prevState);
 	};
@@ -23,12 +17,7 @@ export default function Sidebar({
 				<BsPencilSquare onClick={handleNewMessage} />
 			</GroupName>
 			<div>
-				<Channels
-					setIsModalShow={setIsModalShow}
-					params={params}
-					channels={channels}
-					setChannels={setChannels}
-				/>
+				<Channels setIsModalShow={setIsModalShow} />
 				<DMs />
 			</div>
 		</SidebarStyles>
