@@ -90,7 +90,7 @@ export default function NewChannel() {
 			...channelInfo,
 			name: channelName,
 		});
-	}, [channelName]);
+	}, [channelName, channelInfo]);
 
 	return (
 		<NewChannelLayout>
