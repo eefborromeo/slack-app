@@ -2,9 +2,9 @@ import React from 'react';
 import { MessageTitle, TitleContainer } from '../styles';
 import UserList from './UserList';
 import { GoKebabHorizontal } from 'react-icons/go';
+import useFetch from '../../hooks/useFetch';
 
 export default function Title({
-	allUsers,
 	isNewMessage,
 	setIsNewMessage,
 	selectedUser,
@@ -17,10 +17,12 @@ export default function Title({
 		setIsChannelInfo(true);
 	};
 
+	const { status, data } = useFetch('http://206.189.91.54/api/v1/users');
+
 	return (
 		<MessageTitle>
 			{isNewMessage ? (
-				<UserList allUsers={allUsers} setIsNewMessage={setIsNewMessage} />
+				<UserList allUsers={data} status={status} setIsNewMessage={setIsNewMessage} />
 			) : (
 				<TitleContainer>
 					<h2>

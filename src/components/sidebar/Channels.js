@@ -5,16 +5,9 @@ import axios from 'axios';
 import { BsPlus, BsHash } from 'react-icons/bs';
 import { ChannelDMsLayout, Plus } from '../styles';
 
-export default function Channels({
-	setIsModalShow,
-	handleUserFetch,
-	params,
-	channels,
-	setChannels,
-}) {
+export default function Channels({ setIsModalShow, params, channels, setChannels }) {
 	const handleNewChannel = () => {
 		setIsModalShow(true);
-		handleUserFetch();
 	};
 
 	const getChannels = async () => {

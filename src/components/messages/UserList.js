@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/User';
 import { Dropdown, Options, UserListForm } from '../styles';
 
-export default function UserList({ allUsers, setIsNewMessage }) {
+export default function UserList({ allUsers, status, setIsNewMessage }) {
 	const [search, setSearch] = useState('');
 	const [searchList, setSearchList] = useState(allUsers);
 	const { handleSettingReceivers } = useContext(UserContext);
@@ -30,6 +30,7 @@ export default function UserList({ allUsers, setIsNewMessage }) {
 			setSearchList(allUsers.filter(user => user.uid.toLowerCase().match(search.toLowerCase())));
 		}
 	}, [search, allUsers]);
+
 	return (
 		<UserListForm>
 			<Dropdown>
@@ -37,7 +38,7 @@ export default function UserList({ allUsers, setIsNewMessage }) {
 				<input type="text" value={search} onChange={handleSearch} autoComplete="off" />
 				{
 					<Options>
-						{searchList.length === 0 ? (
+						{status === "idle" || status === "fetching" ? (
 							<div>
 								<h3>Loading...</h3>
 							</div>

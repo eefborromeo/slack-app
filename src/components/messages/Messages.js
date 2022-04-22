@@ -7,7 +7,6 @@ import { UserContext } from '../../contexts/User';
 import { useParams } from 'react-router-dom';
 
 export default function Messages({
-	allUsers,
 	isNewMessage,
 	setIsNewMessage,
 	channels,
@@ -31,7 +30,6 @@ export default function Messages({
 	return (
 		<MessageContainer>
 			<Title
-				allUsers={allUsers}
 				isNewMessage={isNewMessage}
 				setIsNewMessage={setIsNewMessage}
 				selectedUser={selectedUser}

@@ -7,19 +7,13 @@ import DMs from './DMs';
 
 export default function Sidebar({
 	setIsNewMessage,
-	getAllUsers,
 	setIsModalShow,
 	channels,
 	setChannels,
 	params,
 }) {
-	const handleUserFetch = () => {
-		getAllUsers();
-	};
-
 	const handleNewMessage = () => {
 		setIsNewMessage(prevState => !prevState);
-		handleUserFetch();
 	};
 
 	return (
@@ -31,7 +25,6 @@ export default function Sidebar({
 			<div>
 				<Channels
 					setIsModalShow={setIsModalShow}
-					handleUserFetch={handleUserFetch}
 					params={params}
 					channels={channels}
 					setChannels={setChannels}

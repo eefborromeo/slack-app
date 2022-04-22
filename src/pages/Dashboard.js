@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { UserContext } from '../contexts/User';
 
@@ -16,7 +15,6 @@ export default function Dashboard() {
 	const {
 		user: { expiry, uid, accessToken, client, isLoggedIn },
 	} = useContext(UserContext);
-	const [allUsers, setAllUsers] = useState([]);
 	const [channels, setChannels] = useState([]);
 	const [selectedChannel, setSelectedChannel] = useState({});
 	const [isNewMessage, setIsNewMessage] = useState(false);
@@ -33,24 +31,15 @@ export default function Dashboard() {
 		return <Navigate to="/" />;
 	}
 
-	const getAllUsers = async () => {
-		let {
-			data: { data },
-		} = await axios.get('http://206.189.91.54/api/v1/users', { params });
-		setAllUsers(data);
-	};
-
 	return (
 		<>
 			<TopBar />
 			<FlexContainer>
 				<Sidebar
 					setIsNewMessage={setIsNewMessage}
-					setAllUsers={setAllUsers}
 					setIsModalShow={setIsModalShow}
 					channels={channels}
 					setChannels={setChannels}
-					getAllUsers={getAllUsers}
 					params={params}
 				/>
 				<Routes>
@@ -58,7 +47,6 @@ export default function Dashboard() {
 						path="/:id"
 						element={
 							<Messages
-								allUsers={allUsers}
 								isNewMessage={isNewMessage}
 								setIsNewMessage={setIsNewMessage}
 								channels={channels}
@@ -73,11 +61,7 @@ export default function Dashboard() {
 						path="/"
 						element={
 							<MessageContainer>
-								<Title
-									allUsers={allUsers}
-									isNewMessage={isNewMessage}
-									setIsNewMessage={setIsNewMessage}
-								/>
+								<Title isNewMessage={isNewMessage} setIsNewMessage={setIsNewMessage} />
 							</MessageContainer>
 						}
 					/>
@@ -86,15 +70,7 @@ export default function Dashboard() {
 					isModalShow={isModalShow}
 					setIsModalShow={setIsModalShow}
 					setIsChannelInfo={setIsChannelInfo}>
-					{isChannelInfo ? (
-						<ChannelInfo
-							selectedChannel={selectedChannel}
-							getAllUsers={getAllUsers}
-							allUsers={allUsers}
-						/>
-					) : (
-						<NewChannel allUsers={allUsers} />
-					)}
+					{isChannelInfo ? <ChannelInfo selectedChannel={selectedChannel} /> : <NewChannel />}
 				</Modal>
 			</FlexContainer>
 		</>

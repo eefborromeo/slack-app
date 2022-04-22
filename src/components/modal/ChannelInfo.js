@@ -2,14 +2,16 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from '../../contexts/User';
 import { ChannelInformation, Dropdown, Options, Tab, Tabs } from '../styles';
+import useFetch from '../../hooks/useFetch';
 
-export default function ChannelInfo({ selectedChannel, getAllUsers, allUsers }) {
+export default function ChannelInfo({ selectedChannel }) {
+	const { status, data } = useFetch('http://206.189.91.54/api/v1/users');
 	const [channelInfo, setChannelInfo] = useState({});
 	const [channelMembers, setChannelMembers] = useState([]);
 	const [activeTab, setActiveTab] = useState('About');
 	const [isAddNewMember, setIsAddNewMember] = useState(false);
 	const [search, setSearch] = useState('');
-	const [searchList, setSearchList] = useState(allUsers);
+	const [searchList, setSearchList] = useState(data);
 	const { id } = selectedChannel;
 	const {
 		user: { expiry, uid, accessToken, client },
@@ -20,7 +22,7 @@ export default function ChannelInfo({ selectedChannel, getAllUsers, allUsers }) 
 		'access-token': accessToken,
 		client: client,
 	};
-	const ownerInfo = allUsers?.find(user => channelInfo?.owner_id === user.id);
+	const ownerInfo = data?.find(user => channelInfo?.owner_id === user.id);
 
 	const options = {
 		weekday: 'long',
@@ -34,12 +36,11 @@ export default function ChannelInfo({ selectedChannel, getAllUsers, allUsers }) 
 			data: { data },
 		} = await axios.get(`http://206.189.91.54/api/v1/channels/${id}`, { params });
 		setChannelInfo(data);
-		getAllUsers();
 	};
 
 	const getMembersById = () => {
 		const { channel_members } = channelInfo;
-		const groupedMembers = allUsers?.filter(user =>
+		const groupedMembers = data?.filter(user =>
 			channel_members?.find(member => member.user_id === user.id)
 		);
 		setChannelMembers(groupedMembers);
@@ -75,11 +76,11 @@ export default function ChannelInfo({ selectedChannel, getAllUsers, allUsers }) 
 		getMembersById();
 
 		if (search === '') {
-			setSearchList(allUsers);
+			setSearchList(data);
 		} else {
-			setSearchList(allUsers.filter(user => user.uid.toLowerCase().match(search.toLowerCase())));
+			setSearchList(data.filter(user => user.uid.toLowerCase().match(search.toLowerCase())));
 		}
-	}, [allUsers, search]);
+	}, [data, search]);
 
 	return (
 		<ChannelInformation>
@@ -106,11 +107,15 @@ export default function ChannelInfo({ selectedChannel, getAllUsers, allUsers }) 
 						<input value={search} onChange={e => handleSearch(e)} />
 						{search && (
 							<Options>
-								{searchList?.map(user => (
-									<div key={user.id} onClick={() => handleAddMember(user.id)}>
-										{user.uid}
-									</div>
-								))}
+								{status === 'idle' || status === 'fetching' ? (
+									<div>Loading...</div>
+								) : (
+									searchList?.map(user => (
+										<div key={user.id} onClick={() => handleAddMember(user.id)}>
+											{user.uid}
+										</div>
+									))
+								)}
 							</Options>
 						)}
 					</Dropdown>
