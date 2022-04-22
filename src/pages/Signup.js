@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { Errors, FormContainer, FormLayout } from '../components/styles';
+import usePost from '../hooks/usePost';
 
 export default function Signup() {
 	const [userInfo, setUserInfo] = useState({
@@ -9,34 +9,13 @@ export default function Signup() {
 		password: '',
 		password_confirmation: '',
 	});
-	const [errors, setErrors] = useState(false);
-	const [errorMessage, setErrorMessage] = useState('');
+	const [errorMessage, setErrorMessage] = useState([]);
+	const { res, errors, handleSubmit } = usePost('http://206.189.91.54/api/v1/auth', userInfo);
 
 	const navigate = useNavigate();
 
-	const handleSubmit = e => {
-		e.preventDefault();
-
-		axios
-			.post('http://206.189.91.54/api/v1/auth', userInfo)
-			.then(response => {
-				navigate('/');
-				return response;
-			})
-			.catch(error => {
-				const {
-					data: { status, errors },
-				} = error.response;
-				if (status === 'error') {
-					setErrors(true);
-					setErrorMessage(errors.full_messages);
-					return;
-				}
-			});
-	};
-
 	const handleChange = e => {
-		setErrors(false);
+		setErrorMessage([]);
 		const key = e.target.id;
 		const value = e.target.value;
 		setUserInfo({
@@ -44,6 +23,13 @@ export default function Signup() {
 			[key]: value,
 		});
 	};
+
+	useEffect(() => {
+		if (res?.data?.status === 'success') {
+			navigate('/');
+		}
+		setErrorMessage(errors.full_messages);
+	}, [res, errors, navigate]);
 
 	return (
 		<FormLayout>
@@ -85,7 +71,9 @@ export default function Signup() {
 							value={userInfo.password_confirmation}
 							onChange={handleChange}
 						/>
-						{errors && errorMessage.map((message, index) => <Errors key={index}>{message}</Errors>)}
+						{errorMessage?.map((message, index) => (
+							<Errors key={index}>{message}</Errors>
+						))}
 					</div>
 					<button type="submit">Sign Up</button>
 				</form>
