@@ -5,30 +5,29 @@ const UserContext = createContext();
 function UserContextProvider({ children }) {
 	const [user, setUser] = useState({
 		isLoggedIn: false,
-		receivers: [],
 	});
 
 	const handleLogin = (uid, accessToken, client, userEmail, expiry) => {
 		setUser({
-			...user,
 			uid,
 			accessToken,
 			client,
 			currentUser: userEmail,
 			expiry,
 			isLoggedIn: true,
+			receivers: []
 		});
 	};
 
 	const handleLogout = () => {
 		setUser({
-			...user,
 			uid: '',
 			accessToken: '',
 			client: '',
 			currentUser: '',
 			expiry: '',
 			isLoggedIn: false,
+			receivers: []
 		});
 	};
 
