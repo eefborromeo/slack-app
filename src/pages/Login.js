@@ -39,7 +39,7 @@ export default function Login() {
 		setErrorMessage(errors);
 	}, [res, errors, handleLogin]);
 
-	if (user.isLoggedIn) {
+	if (user?.isLoggedIn) {
 		return <Navigate to="/app" />;
 	}
 

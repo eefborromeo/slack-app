@@ -19,7 +19,7 @@ export default function Channels({ setIsModalShow }) {
 				{status === 'idle' || status === 'fetching' ? (
 					<li>Loading Channels</li>
 				) : (
-					data.map(channel => {
+					data?.map(channel => {
 						return (
 							<Link key={channel.id} to={`/app/${channel.id}`}>
 								<li>

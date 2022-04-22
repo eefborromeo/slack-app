@@ -23,8 +23,8 @@ export default function Messages({
 	const { id } = useParams();
 
 	useEffect(() => {
-		setSelectedUser(receivers.find(receiver => receiver.id === parseInt(id)));
-		setSelectedChannel(data.find(channel => channel.id === parseInt(id)));
+		setSelectedUser(receivers?.find(receiver => receiver.id === parseInt(id)));
+		setSelectedChannel(data?.find(channel => channel.id === parseInt(id)));
 	}, [receivers, data, id]);
 
 	return (

@@ -27,7 +27,7 @@ export default function DMs() {
 		<ChannelDMsLayout>
 			<h2>Direct Messages</h2>
 			<ul>
-				{receivers.map(user => (
+				{receivers?.map(user => (
 					<Link to={`/app/${user.id}`} key={user.id}>
 						<DMsListItem>
 							{user.email} <IoIosClose className="close" onClick={e => handleClose(e, user.id)} />
