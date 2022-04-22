@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Errors, FormContainer, FormLayout } from '../components/styles';
 import usePost from '../hooks/usePost';
 
@@ -77,6 +77,7 @@ export default function Signup() {
 					</div>
 					<button type="submit">Sign Up</button>
 				</form>
+				<Link to="/">Already have an account? Login</Link>
 			</FormContainer>
 		</FormLayout>
 	);
